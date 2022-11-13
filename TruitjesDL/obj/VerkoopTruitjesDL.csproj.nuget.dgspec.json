@@ -1,0 +1,136 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Pieter\\Downloads\\okeokeoke (1)\\Verkoop_vrijdag\\VerkoopTruitjesDL\\VerkoopTruitjesDL.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Pieter\\Downloads\\okeokeoke (1)\\Verkoop_vrijdag\\VerkoopTruithesBL\\VerkoopTruithesBL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Pieter\\Downloads\\okeokeoke (1)\\Verkoop_vrijdag\\VerkoopTruithesBL\\VerkoopTruithesBL.csproj",
+        "projectName": "VerkoopTruithesBL",
+        "projectPath": "C:\\Users\\Pieter\\Downloads\\okeokeoke (1)\\Verkoop_vrijdag\\VerkoopTruithesBL\\VerkoopTruithesBL.csproj",
+        "packagesPath": "C:\\Users\\Pieter\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pieter\\Downloads\\okeokeoke (1)\\Verkoop_vrijdag\\VerkoopTruithesBL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Pieter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Pieter\\Downloads\\okeokeoke (1)\\Verkoop_vrijdag\\VerkoopTruitjesDL\\VerkoopTruitjesDL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Pieter\\Downloads\\okeokeoke (1)\\Verkoop_vrijdag\\VerkoopTruitjesDL\\VerkoopTruitjesDL.csproj",
+        "projectName": "VerkoopTruitjesDL",
+        "projectPath": "C:\\Users\\Pieter\\Downloads\\okeokeoke (1)\\Verkoop_vrijdag\\VerkoopTruitjesDL\\VerkoopTruitjesDL.csproj",
+        "packagesPath": "C:\\Users\\Pieter\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pieter\\Downloads\\okeokeoke (1)\\Verkoop_vrijdag\\VerkoopTruitjesDL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Pieter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\Pieter\\Downloads\\okeokeoke (1)\\Verkoop_vrijdag\\VerkoopTruithesBL\\VerkoopTruithesBL.csproj": {
+                "projectPath": "C:\\Users\\Pieter\\Downloads\\okeokeoke (1)\\Verkoop_vrijdag\\VerkoopTruithesBL\\VerkoopTruithesBL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

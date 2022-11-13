@@ -1,0 +1,15 @@
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\bin\Debug\net6.0\VerkoopTruitjesDL.deps.json
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\bin\Debug\net6.0\VerkoopTruitjesDL.dll
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\bin\Debug\net6.0\VerkoopTruitjesDL.pdb
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\bin\Debug\net6.0\VerkoopTruithesBL.dll
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\bin\Debug\net6.0\VerkoopTruithesBL.pdb
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\obj\Debug\net6.0\VerkoopTruitjesDL.csproj.AssemblyReference.cache
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\obj\Debug\net6.0\VerkoopTruitjesDL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\obj\Debug\net6.0\VerkoopTruitjesDL.AssemblyInfoInputs.cache
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\obj\Debug\net6.0\VerkoopTruitjesDL.AssemblyInfo.cs
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\obj\Debug\net6.0\VerkoopTruitjesDL.csproj.CoreCompileInputs.cache
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\obj\Debug\net6.0\VerkoopTruitjesDL.csproj.CopyComplete
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\obj\Debug\net6.0\VerkoopTruitjesDL.dll
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\obj\Debug\net6.0\refint\VerkoopTruitjesDL.dll
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\obj\Debug\net6.0\VerkoopTruitjesDL.pdb
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruitjesDL\obj\Debug\net6.0\ref\VerkoopTruitjesDL.dll

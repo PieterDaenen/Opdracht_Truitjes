@@ -1,0 +1,12 @@
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\bin\Debug\net6.0\VerkoopTruithesBL.deps.json
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\bin\Debug\net6.0\VerkoopTruithesBL.dll
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\bin\Debug\net6.0\VerkoopTruithesBL.pdb
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\obj\Debug\net6.0\VerkoopTruithesBL.csproj.AssemblyReference.cache
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\obj\Debug\net6.0\VerkoopTruithesBL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\obj\Debug\net6.0\VerkoopTruithesBL.AssemblyInfoInputs.cache
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\obj\Debug\net6.0\VerkoopTruithesBL.AssemblyInfo.cs
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\obj\Debug\net6.0\VerkoopTruithesBL.csproj.CoreCompileInputs.cache
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\obj\Debug\net6.0\VerkoopTruithesBL.dll
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\obj\Debug\net6.0\refint\VerkoopTruithesBL.dll
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\obj\Debug\net6.0\VerkoopTruithesBL.pdb
+C:\Users\piete\source\repos\Verkoop_vrijdag\VerkoopTruithesBL\obj\Debug\net6.0\ref\VerkoopTruithesBL.dll

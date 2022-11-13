@@ -1,0 +1,12 @@
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\bin\Debug\net6.0\TruitjesBL.deps.json
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\bin\Debug\net6.0\TruitjesBL.dll
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\bin\Debug\net6.0\TruitjesBL.pdb
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\obj\Debug\net6.0\TruitjesBL.csproj.AssemblyReference.cache
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\obj\Debug\net6.0\TruitjesBL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\obj\Debug\net6.0\TruitjesBL.AssemblyInfoInputs.cache
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\obj\Debug\net6.0\TruitjesBL.AssemblyInfo.cs
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\obj\Debug\net6.0\TruitjesBL.csproj.CoreCompileInputs.cache
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\obj\Debug\net6.0\TruitjesBL.dll
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\obj\Debug\net6.0\refint\TruitjesBL.dll
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\obj\Debug\net6.0\TruitjesBL.pdb
+C:\Users\Pieter\source\repos\Truitjes\TruitjesBL\obj\Debug\net6.0\ref\TruitjesBL.dll
