@@ -193,7 +193,7 @@ namespace VerkoopTruitjesDL.Repositories
                     ClubSet gevondenClubSet = new((bool)sqlDataReader["Uit"], (int)sqlDataReader["Versie"]);
                     Club gevondenClub = new((string)sqlDataReader["Competitie"], (string)sqlDataReader["Ploegnaam"]);
 
-                    truitjes.Add(new(gevondenTruitjeId, gevondenSeizoen, gevondenClub, gevondenClubSet, gevondenMaat));
+                    truitjes.Add(new(gevondenPrijs, gevondenTruitjeId, gevondenSeizoen, gevondenClub, gevondenClubSet, gevondenMaat));
                 }
 
                 sqlDataReader.Close();

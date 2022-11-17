@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VerkoopTruithesBL.Exceptions;
 using VerkoopTruithesBL.Managers;
 using VerkoopTruithesBL.Model;
 using VerkoopTruitjesDL.Repositories;
@@ -76,7 +77,25 @@ namespace TruitjesUI
 
         private void PlaatsBestelling_Click(object sender, RoutedEventArgs e)
         {
-            //bestellingManager.VoegBestellingToe(bestelling);
+          
+
+            try
+            {
+            if (BetaaldCheckBox.IsChecked == true)
+            {
+                BetaaldCheckBox.IsChecked = false;
+                bestelling.ZetBetaald();
+            }
+            bestellingManager.VoegBestellingToe(bestelling);
+            KlantTextBox.Text = "";
+            PrijsTextBox.Text = "";
+            truitjes.Clear();
+
+            }
+            catch (BestellingManagerException ex)
+            {
+                MessageBox.Show("Vul alle data in");
+            }
 
         }
 

@@ -16,6 +16,7 @@ namespace VerkoopTruitjesDL.Repositories
         public BestellingRepository(string connectionString)
         {
             this.connectionString = connectionString;
+            // truitjeRepository = new TruitjeRepository(connectionString);
         }
 
         public bool BestaatBestelling(Bestelling bestelling)
@@ -74,14 +75,14 @@ namespace VerkoopTruitjesDL.Repositories
         {
             SqlConnection connection = new SqlConnection(connectionString);
             string queryBestelling = "INSERT INTO bestelling(prijs, klantNr, betaald, tijdstip) output INSERTED.bestellingNr VALUES(@prijs, @klantNr, @betaald, @tijdstip )";
-            string queryDetail = "INSERT INTO bestellingdetail(bestellingNr, truitjeId, aantal) Values(@bestellingNr, @truitjeId, @aantal)";
+            string queryDetail = "INSERT INTO bestellingdetail(bestellingNr, truitjeId, aantal) VALUES(@bestellingNr, @truitjeId, @aantal)";
             using (SqlCommand cmd = connection.CreateCommand())
             {
                 try
                 {
                     connection.Open();
                     cmd.CommandText = queryBestelling;
-                    cmd.Parameters.AddWithValue("@prijs", bestelling.Prijs);
+                    cmd.Parameters.AddWithValue("@prijs", bestelling.BerekenPrijs());
                     cmd.Parameters.AddWithValue("@klantNr", bestelling.Klant.KlantNr);
                     cmd.Parameters.AddWithValue("@betaald", bestelling.Betaald);
                     cmd.Parameters.AddWithValue("@tijdstip", bestelling.Tijdstip);
@@ -92,10 +93,11 @@ namespace VerkoopTruitjesDL.Repositories
 
                     cmd.Parameters.Clear();
                     cmd.CommandText = queryDetail;
-                    //cmd.Parameters.AddWithValue("@bestellingNr", bestellingNr)
-                    bestellingNr = cmd.Parameters.Add("@bestellingNr");
-                    cmd.Parameters.Add("truitjeId");
-                    cmd.Parameters.Add("@aantal");
+                    cmd.Parameters.AddWithValue("@bestellingNr", bestellingNr);
+                    //bestellingNr = cmd.Parameters.Add("@bestellingNr");
+                    cmd.Parameters.Add(new SqlParameter("@truitjeId", System.Data.SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@aantal", System.Data.SqlDbType.Int));
+
 
                     foreach (KeyValuePair<Truitje, int> kvp in truitjes)
                     {

@@ -75,7 +75,7 @@ namespace VerkoopTruithesBL.Model
 
         public override string? ToString()
         {
-            return $"{Prijs}, {Seizoen}, {Club.ToString()}, {ClubSet.ToString()}, {KledingMaat}";
+            return $"{Id}, {Seizoen}, {Club.ToString()}, {ClubSet.ToString()}, {KledingMaat}, {Prijs}";
         }
     }
 }

@@ -21,9 +21,10 @@ namespace VerkoopTruithesBL.Model
             _truitjes = truitjes;
             Tijdstip = tijdstip;
             ZetBestellingNr(bestellingNr);
-            ZetPrijs(prijs);
+            ZetPrijs(BerekenPrijs());
             ZetKlant(klant);
-            ZetBetaald();
+            if (betaald == true) ZetBetaald();
+            else ZetOnbetaald();
         }
 
         public int BestellingNr { get; private set; }
