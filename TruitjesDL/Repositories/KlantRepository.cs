@@ -73,28 +73,28 @@ namespace VerkoopTruitjesDL.Repositories
         {
             SqlConnection conn = new SqlConnection(connectionString);
             string sql = "SELECT t1.KlantNr,t1.Naam,t1.Adres,t2.BestellingNr,t2.Prijs prijsbestelling,t2.Betaald,t2.Tijdstip,"
-                +"t3.TruitjeId,t3.Aantal,t4.Prijs prijstruitje, t4.maat,t5.Competitie,t5.Ploegnaam,t5.Seizoen,"
-                +"t6.Uit,t6.Versie "
-                +" FROM Klant t1 "
-                +"left join Bestelling t2 on t1.KlantNr = t2.KlantNr "
-                +"left join BestellingDetail t3 on t2.BestellingNr = t3.BestellingNr "
-                +"left join Truitje t4 on t3.TruitjeId = t4.TruitjeId "
-                +"left join club t5 on t4.ClubId = t5.ClubId "
-                +"left join clubset t6 on t4.ClubsetId = t6.ClubSetId "
-                +"where t1.klantnr = @klantnr "
-                +"order by t2.BestellingNr";
-            using(SqlCommand cmd = conn.CreateCommand())
+                + "t3.TruitjeId,t3.Aantal,t4.Prijs prijstruitje, t4.maat,t5.Competitie,t5.Ploegnaam,t5.Seizoen,"
+                + "t6.Uit,t6.Versie "
+                + " FROM Klant t1 "
+                + "left join Bestelling t2 on t1.KlantNr = t2.KlantNr "
+                + "left join BestellingDetail t3 on t2.BestellingNr = t3.BestellingNr "
+                + "left join Truitje t4 on t3.TruitjeId = t4.TruitjeId "
+                + "left join club t5 on t4.ClubId = t5.ClubId "
+                + "left join clubset t6 on t4.ClubsetId = t6.ClubSetId "
+                + "where t1.klantnr = @klantnr "
+                + "order by t2.BestellingNr";
+            using (SqlCommand cmd = conn.CreateCommand())
             {
                 try
                 {
                     conn.Open();
                     cmd.CommandText = sql;
                     cmd.Parameters.AddWithValue("@klantnr", klantnr);
-                    SqlDataReader reader=cmd.ExecuteReader();
+                    SqlDataReader reader = cmd.ExecuteReader();
                     Klant klant = null;
                     int bestellingNrOld = -1;
-                    int bestellingnr=0;
-                    bool betaald=false;
+                    int bestellingnr = 0;
+                    bool betaald = false;
                     double prijs = 0.0;
                     double prijstruitje;
                     bool first = true;
@@ -105,17 +105,17 @@ namespace VerkoopTruitjesDL.Repositories
                     string competitie;
                     string ploegnaam;
                     string seizoen;
-                    Dictionary<Truitje,int> truitjes=new Dictionary<Truitje,int>();
-                    List<Bestelling> bestellingen=new List<Bestelling>();
+                    Dictionary<Truitje, int> truitjes = new Dictionary<Truitje, int>();
+                    List<Bestelling> bestellingen = new List<Bestelling>();
                     KledingMaat maat;
-                    DateTime tijdstip=DateTime.Now;
-                    while(reader.Read())
+                    DateTime tijdstip = DateTime.Now;
+                    while (reader.Read())
                     {
                         if (klant == null)
                         {
                             string naamKlant = (string)reader["naam"];
                             string adresKlant = (string)reader["adres"];
-                            klant = new Klant(klantnr,naamKlant, adresKlant);
+                            klant = new Klant(klantnr, naamKlant, adresKlant);
                         }
                         if (!reader.IsDBNull(reader.GetOrdinal("bestellingnr"))) //heeft bestellingen
                         {
@@ -123,15 +123,15 @@ namespace VerkoopTruitjesDL.Repositories
                             if (bestellingnr != bestellingNrOld)
                             {
                                 //nieuwe bestelling of eerste
-                                if (bestellingNrOld>0)
+                                if (bestellingNrOld > 0)
                                 {
                                     //maak bestelling want we zitten op het einde
-                                    Bestelling b = new Bestelling(truitjes,bestellingNrOld,tijdstip,prijs,klant,betaald);
+                                    Bestelling b = new Bestelling(truitjes, bestellingNrOld, tijdstip, prijs, klant, betaald);
                                     bestellingen.Add(b);
                                     truitjes = new Dictionary<Truitje, int>();
                                 }
                                 first = true;
-                                bestellingNrOld=bestellingnr;
+                                bestellingNrOld = bestellingnr;
                             }
                             if (first)
                             {
@@ -144,14 +144,14 @@ namespace VerkoopTruitjesDL.Repositories
                             aantal = (int)reader["aantal"];
                             truitjeid = (int)reader["truitjeid"];
                             competitie = (string)reader["competitie"];
-                            seizoen = (string)reader["seizoen"];
                             ploegnaam = (string)reader["ploegnaam"];
+                            seizoen = (string)reader["seizoen"];
                             prijstruitje = (double)reader["prijstruitje"];
-                            maat = Enum.Parse<KledingMaat>((string)reader["maat"]);
+                            maat = Enum.Parse<KledingMaat>((string)reader["maat"]); //??
                             versie = (int)reader["versie"];
                             uit = (bool)reader["uit"];
-                            Truitje truitje = new Truitje(prijstruitje,truitjeid,seizoen,new Club(competitie,ploegnaam),new ClubSet(uit,versie),maat);
-                            truitjes.Add(truitje,aantal);
+                            Truitje truitje = new Truitje(prijstruitje, truitjeid, seizoen, new Club(competitie, ploegnaam), new ClubSet(uit, versie), maat);
+                            truitjes.Add(truitje, aantal);
                         }
                     }
                     reader.Close();
