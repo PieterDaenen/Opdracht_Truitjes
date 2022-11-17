@@ -51,7 +51,7 @@ namespace VerkoopTruithesBL.Managers
                         || versie.HasValue || prijs.HasValue || thuis.HasValue
                         )
                     {
-                        truitjes.AddRange(repo.GeefTruitjes(competitie, club, seizoen, kledingmaat, versie, thuis, prijs, false));
+                        truitjes.AddRange(repo.GeefTruitjes(competitie, club, seizoen, kledingmaat, versie, thuis, prijs));
                     }
                     else throw new TruitjeManagerException("ZoekTruitjes - geen zoekcriteria");
                 }

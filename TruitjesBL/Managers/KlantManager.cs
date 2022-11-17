@@ -43,6 +43,14 @@ namespace VerkoopTruithesBL.Managers
                 {
                     throw new KlantManagerException("KlantVerwijderen - klant bestaat niet");
                 }
+
+                IReadOnlyList<Bestelling> bestellingen = klant.GeefBestellingen();
+                bool moetNogBetalen = false;
+                foreach (Bestelling b in bestellingen)
+                {
+                    if (b.Betaald == false) moetNogBetalen = true;
+                }
+                if (moetNogBetalen) throw new KlantManagerException("KlantVerwijderen - klant heeft nog bestellingen te betalen");
                 _klantRepo.VerwijderKlant(klant);
             }
             catch (Exception ex)
@@ -87,6 +95,7 @@ namespace VerkoopTruithesBL.Managers
                 else
                 {
                     if ((!string.IsNullOrWhiteSpace(naam)) || !string.IsNullOrWhiteSpace(adres))
+                        //tryparse bijzetten?
                     {
                         klanten.AddRange(_klantRepo.GeefKlanten(naam,adres));
                     }

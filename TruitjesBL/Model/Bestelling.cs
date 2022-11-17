@@ -9,7 +9,7 @@ namespace VerkoopTruithesBL.Model
 {
     public class Bestelling
     {
-        private Dictionary<Truitje, int> _truitjes = new Dictionary<Truitje, int>(); //int = aantal truitjes
+        private Dictionary<Truitje, int> _truitjes = new Dictionary<Truitje, int>();
 
         public Bestelling(DateTime tijdstip)
         {

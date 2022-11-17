@@ -20,5 +20,13 @@ namespace VerkoopTruithesBL.Model
 
         public bool Uit { get; set; }
         public int Versie { get; set; }
+
+        public override string? ToString()
+        {
+            string uit;
+            if (Uit == true) uit = "Uit";
+            else uit = "Thuis";
+            return $"{uit}, {Versie}";
+        }
     }
 }

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TruitjesDL", "TruitjesDL\Tr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TruitjesUT", "TruitjesUT\TruitjesUT.csproj", "{6E2C0460-46AB-4A3A-8E94-736AC0CB7299}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CA1", "CA1\CA1.csproj", "{8F4B56E0-AEF8-4CA3-B19D-07ADA2EBDCDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CA1", "CA1\CA1.csproj", "{8F4B56E0-AEF8-4CA3-B19D-07ADA2EBDCDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TruitjesUI", "TruitjesUI\TruitjesUI.csproj", "{337C738B-1236-4325-9F96-15763303B698}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{8F4B56E0-AEF8-4CA3-B19D-07ADA2EBDCDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F4B56E0-AEF8-4CA3-B19D-07ADA2EBDCDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F4B56E0-AEF8-4CA3-B19D-07ADA2EBDCDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{337C738B-1236-4325-9F96-15763303B698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{337C738B-1236-4325-9F96-15763303B698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{337C738B-1236-4325-9F96-15763303B698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{337C738B-1236-4325-9F96-15763303B698}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

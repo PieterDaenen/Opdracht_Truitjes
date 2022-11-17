@@ -22,6 +22,12 @@ namespace VerkoopTruithesBL.Model
 
         public string Competitie { get; private set; }
         public string Ploegnaam { get; private set; }
+
+        public override string? ToString()
+        {
+            return $"{Competitie}, {Ploegnaam}";
+        }
+
         public void ZetCompetitie(string competitie)
         {
 

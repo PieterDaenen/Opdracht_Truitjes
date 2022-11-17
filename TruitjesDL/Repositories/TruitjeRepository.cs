@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Numerics;
@@ -93,7 +94,7 @@ namespace VerkoopTruitjesDL.Repositories
                     KledingMaat maat;
                     while (reader.Read())
                     {
-                        prijstruitje = (double)reader["prijstruitje"];
+                        prijstruitje = (double)reader["prijs"];
                         truitjeid = (int)reader["truitjeid"];
                         seizoen = (string)reader["seizoen"];
 
@@ -122,35 +123,97 @@ namespace VerkoopTruitjesDL.Repositories
             }
         }
 
-        public IEnumerable<Truitje> GeefTruitjes(string competitie, string club, string seizoen, string kledingmaat, int? versie, bool? thuis, double? prijs, bool v)
+        //!
+        public IEnumerable<Truitje> GeefTruitjes(string? competitie, string? club, string? seizoen, string? kledingmaat, int? versie, bool? thuis, double? prijs)
         {
-            //wtf is dit
-            List<Truitje> truitjes = new List<Truitje>();
-            string query = "SELECT * FROM truitje t left join Club c on t.ClubId = c.ClubId join ClubSet s on t.ClubSetId = s.ClubsetId where competitie=@competitie and club=@club and seizoen=@seizoen and kledingmaat=@kledingmaat";
-            SqlConnection connection = new SqlConnection(connectionString);
-            using (SqlCommand cmd = connection.CreateCommand())
+            List<Truitje> truitjes = new();
+
+            string query = "SELECT * FROM Truitje t " +
+                "JOIN Club c on(t.ClubId = c.ClubId) " +
+                "JOIN Clubset cs on(t.ClubsetId = cs.ClubsetId) " +
+                "WHERE 1=1 ";
+
+            SqlConnection sqlConnection = new(connectionString);
+            using SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            try
             {
-                try
+
+                sqlConnection.Open();
+
+                if (competitie is not null)
                 {
-                    connection.Open();
-                    cmd.CommandText = query;
-                    cmd.Parameters.AddWithValue("@competitie", competitie);
-                    cmd.Parameters.AddWithValue("@club", club);
-                    cmd.Parameters.AddWithValue("@seizoen", seizoen);
-                    cmd.Parameters.AddWithValue("@kledingmaat", kledingmaat);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        string tCompetitie = (string)reader[]
-                    }
+                    competitie = competitie.Trim();
+                    query += "AND Competitie LIKE @Competitie ";
+                    sqlCommand.Parameters.AddWithValue("@Competitie", $"%{competitie}%");
                 }
+                if (club is not null)
+                {
+                    club = club.Trim();
+                    query += "AND Ploegnaam LIKE @Club ";
+                    sqlCommand.Parameters.AddWithValue("@Club", $"%{club}%");
+                }
+                if (seizoen is not null)
+                {
+                    seizoen = seizoen.Trim();
+                    query += "AND Seizoen LIKE @Seizoen ";
+                    sqlCommand.Parameters.AddWithValue("@Seizoen", $"%{seizoen}%");
+                }
+                if (kledingmaat is not null)
+                {
+                    kledingmaat = kledingmaat.Trim();
+                    query += "AND maat = @Kledingmaat ";
+                    sqlCommand.Parameters.AddWithValue("@Kledingmaat", $"{kledingmaat}");
+                }
+                if (versie is not null)
+                {
+                    query += "AND Versie = @Versie ";
+                    sqlCommand.Parameters.AddWithValue("@Versie", $"{versie}");
+                }
+                if (thuis is not null)
+                {
+                    query += "AND Uit = @Thuis ";
+                    sqlCommand.Parameters.AddWithValue("@Thuis", $"{(thuis == true ? 1 : 0)}");
+                }
+                if (prijs is not null)
+                {
+                    query += "AND Prijs LIKE @Prijs ";
+                    sqlCommand.Parameters.AddWithValue("@Prijs", $"%{prijs}%");
+                }
+
+                sqlCommand.CommandText = query;
+
+                IDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                while (sqlDataReader.Read())
+                {
+                    int gevondenTruitjeId = (int)sqlDataReader["TruitjeId"];
+                    double gevondenPrijs = (double)sqlDataReader["Prijs"];
+                    string gevondenSeizoen = (string)sqlDataReader["Seizoen"];
+
+                    KledingMaat gevondenMaat = Enum.Parse<KledingMaat>((string)sqlDataReader["Maat"]);
+                    ClubSet gevondenClubSet = new((bool)sqlDataReader["Uit"], (int)sqlDataReader["Versie"]);
+                    Club gevondenClub = new((string)sqlDataReader["Competitie"], (string)sqlDataReader["Ploegnaam"]);
+
+                    truitjes.Add(new(gevondenTruitjeId, gevondenSeizoen, gevondenClub, gevondenClubSet, gevondenMaat));
+                }
+
+                sqlDataReader.Close();
+
+                return truitjes;
+            }
+            catch (Exception ex)
+            {
+                throw new TruitjeRepositoryException(ex.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
         }
 
         public void UpdateTruitje(Truitje truitje)
         {
             SqlConnection connection = new SqlConnection(connectionString);
-            string query = "UPDATE truitje SET prijs=@prijs, seizoen=@seizoen, club=@club, clubset=@clubset, kledingmaat=@kledingmaat WHERE truitjeId=@truitjeId";
+            string query = "UPDATE truitje SET prijs=@prijs, seizoen=@seizoen, clubId=@club, clubsetId²=@clubset, kledingmaat=@kledingmaat WHERE truitjeId=@truitjeId";
             using (SqlCommand cmd = connection.CreateCommand())
             {
                 try
@@ -222,6 +285,7 @@ namespace VerkoopTruitjesDL.Repositories
                     cmd.Parameters.AddWithValue("@competitie", truitje.Club.Competitie);
                     cmd.Parameters.AddWithValue("@ploegnaam", truitje.Club.Ploegnaam);
                     int id=(int)cmd.ExecuteScalar();
+                    
                     truitje.ZetId(id);
                 }
                 catch(Exception ex)

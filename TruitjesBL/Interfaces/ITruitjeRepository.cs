@@ -13,7 +13,7 @@ namespace VerkoopTruithesBL.Interfaces
         bool BestaatTruitje(int truitjeId);
         void VoegTruitjeToe(Truitje truitje);
         Truitje GeefTruitje(int value);
-        IEnumerable<Truitje> GeefTruitjes(string competitie, string club, string seizoen, string kledingmaat, int? versie, bool? thuis, double? prijs, bool v);
+        IEnumerable<Truitje> GeefTruitjes(string? competitie, string? club, string? seizoen, string? kledingmaat, int? versie, bool? thuis, double? prijs);
         void VerwijderTruitje(Truitje voetbaltruitje);
         void UpdateTruitje(Truitje voetbaltruitje);
     }

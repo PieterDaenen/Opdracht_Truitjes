@@ -72,5 +72,10 @@ namespace VerkoopTruithesBL.Model
         {
             return HashCode.Combine(Id);
         }
+
+        public override string? ToString()
+        {
+            return $"{Prijs}, {Seizoen}, {Club.ToString()}, {ClubSet.ToString()}, {KledingMaat}";
+        }
     }
 }

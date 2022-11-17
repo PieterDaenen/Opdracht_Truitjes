@@ -88,5 +88,10 @@ namespace VerkoopTruithesBL.Model
         {
             return HashCode.Combine(KlantNr);
         }
+
+        public override string? ToString()
+        {
+            return $"{KlantNr}, {Naam}, {Adres}, {_bestellingen.Count}";
+        }
     }
 }
