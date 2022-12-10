@@ -74,7 +74,6 @@ namespace VerkoopTruithesBL.Model
             if (andereKlant == null) throw new KlantException("IsDezelfde");
             if (!Naam.Equals(andereKlant.Naam)) return false;
             if (!Adres.Equals(andereKlant.Adres)) return false;
-            if (KlantNr!=andereKlant.KlantNr) return false;
             return true;
         }
 

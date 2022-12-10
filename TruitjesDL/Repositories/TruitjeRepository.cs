@@ -213,19 +213,24 @@ namespace VerkoopTruitjesDL.Repositories
         public void UpdateTruitje(Truitje truitje)
         {
             SqlConnection connection = new SqlConnection(connectionString);
-            string query = "UPDATE truitje SET prijs=@prijs, seizoen=@seizoen, clubId=@club, clubsetId²=@clubset, kledingmaat=@kledingmaat WHERE truitjeId=@truitjeId";
+            string queryInsert = "UPDATE truitje SET prijs=@prijs, " +
+                "clubId = (SELECT clubId from Club WHERE ploegnaam=@ploegnaam AND seizoen=@seizoen), " +
+                "clubsetId = (SELECT clubsetid FROM clubset WHERE uit=@uit AND versie=@versie), " +
+                "maat=@kledingmaat WHERE truitjeId=@truitjeId";
+
             using (SqlCommand cmd = connection.CreateCommand())
             {
                 try
                 {
                     connection.Open();
-                    cmd.CommandText = query;
+                    cmd.CommandText = queryInsert;
+                    cmd.Parameters.AddWithValue("@ploegnaam", truitje.Club.Ploegnaam);
+                    cmd.Parameters.AddWithValue("@uit", truitje.ClubSet.Uit);
+                    cmd.Parameters.AddWithValue("@versie", truitje.ClubSet.Versie);
+                    cmd.Parameters.AddWithValue("@truitjeId", truitje.Id);
                     cmd.Parameters.AddWithValue("@prijs", truitje.Prijs);
                     cmd.Parameters.AddWithValue("@seizoen", truitje.Seizoen);
-                    cmd.Parameters.AddWithValue("@club", truitje.Club);
-                    cmd.Parameters.AddWithValue("@clubset", truitje.ClubSet);
-                    cmd.Parameters.AddWithValue("@kledingmaat", truitje.KledingMaat);
-                    cmd.Parameters.AddWithValue("@truitjeId", truitje.Id);
+                    cmd.Parameters.AddWithValue("@kledingmaat", truitje.KledingMaat.ToString());
                     cmd.ExecuteNonQuery();
                 }   
                 catch (Exception ex)
@@ -295,6 +300,56 @@ namespace VerkoopTruitjesDL.Repositories
                 finally
                 {
                     conn.Close();
+                }
+            }
+        }
+        public bool BestaatClubSet(ClubSet clubset)
+        {
+            string query = "SELECT count(*) FROM clubset WHERE uit=@uit AND versie=@versie;";
+            SqlConnection connection = new SqlConnection(connectionString);
+            using (SqlCommand cmd = connection.CreateCommand())
+            {
+                try
+                {
+                    connection.Open();
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@uit", clubset.Uit);
+                    cmd.Parameters.AddWithValue("@versie", clubset.Versie);
+                    int n = (int)cmd.ExecuteScalar();
+                    if (n > 0) return true; else return false;
+                }
+                catch (Exception ex)
+                {
+                    throw new TruitjeRepositoryException("BestaatClubSet", ex);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+        
+        public void VoegClubSetToe(ClubSet clubset)
+        {
+            string query = "INSERT INTO clubset(uit, versie) VALUES(@uit, @versie)";
+            SqlConnection connection = new SqlConnection(connectionString);
+            using (SqlCommand cmd = connection.CreateCommand())
+            {
+                try
+                {
+                    connection.Open();
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@uit", clubset.Uit);
+                    cmd.Parameters.AddWithValue("@versie", clubset.Versie);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new TruitjeRepositoryException("VoegClubSetToe", ex);
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
         }

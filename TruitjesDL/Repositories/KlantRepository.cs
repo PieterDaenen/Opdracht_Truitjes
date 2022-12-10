@@ -186,7 +186,7 @@ namespace VerkoopTruitjesDL.Repositories
                 + "left join club t5 on t4.ClubId = t5.ClubId "
                 + "left join clubset t6 on t4.ClubsetId = t6.ClubSetId "
                 + "where naam like @naam or adres like @adres "
-                + "order by t2.BestellingNr";
+                + "order by t2.KlantNr";
             using (SqlCommand cmd = conn.CreateCommand())
             {
                 try
@@ -216,43 +216,43 @@ namespace VerkoopTruitjesDL.Repositories
                     DateTime tijdstip = DateTime.Now;
                     while (reader.Read())
                     {
-                            if (klant == null || klant.KlantNr != (int)reader["klantNr"])
-                            {
-                                string naamKlant = (string)reader["naam"];
-                                string adresKlant = (string)reader["adres"];
-                                klant = new Klant((int)reader["klantNr"],naamKlant, adresKlant);
-                                klanten.Add(klant);
-                            }
-                            if (!reader.IsDBNull(reader.GetOrdinal("bestellingnr"))) //heeft bestellingen
-                            {
-                                bestellingnr = (int)reader["bestellingnr"];
+                        if (klant == null || klant.KlantNr != (int)reader["klantNr"])
+                        {
+                            string naamKlant = (string)reader["naam"];
+                            string adresKlant = (string)reader["adres"];
+                            klant = new Klant((int)reader["klantNr"], naamKlant, adresKlant);
+                            klanten.Add(klant);
+                        }
+                        if (!reader.IsDBNull(reader.GetOrdinal("bestellingnr"))) //heeft bestellingen
+                        {
+                            bestellingnr = (int)reader["bestellingnr"];
                             if (bestellingnr != bestellingNrOld)
-                                {
-                                    //nieuwe bestelling of eerste
-                                    //shit doen
-                                    //maak bestelling want we zitten op het einde
-                                    betaald = (bool)reader["betaald"];
-                                    prijs = (double)reader["prijsbestelling"];
-                                    tijdstip = (DateTime)reader["tijdstip"];
-                                    truitjes = new Dictionary<Truitje, int>();
-                                    Bestelling b = new Bestelling(truitjes, bestellingnr, tijdstip, prijs, klant, betaald);
-                                    bestellingen.Add(b);
-                                    first = true;
-                                    bestellingNrOld = bestellingnr;
-                                    first = false;
-                                } 
-                                //bestelling heeft altijd truitjes
-                                aantal = (int)reader["aantal"];
-                                truitjeid = (int)reader["truitjeid"];
-                                competitie = (string)reader["competitie"];
-                                seizoen = (string)reader["seizoen"];
-                                ploegnaam = (string)reader["ploegnaam"];
-                                prijstruitje = (double)reader["prijstruitje"];
-                                maat = Enum.Parse<KledingMaat>((string)reader["maat"]);
-                                versie = (int)reader["versie"];
-                                uit = (bool)reader["uit"];
-                                Truitje truitje = new Truitje(prijstruitje, truitjeid, seizoen, new Club(competitie, ploegnaam), new ClubSet(uit, versie), maat);
-                                truitjes.Add(truitje, aantal);
+                            {
+                                //nieuwe bestelling of eerste
+                                //shit doen
+                                //maak bestelling want we zitten op het einde
+                                betaald = (bool)reader["betaald"];
+                                prijs = (double)reader["prijsbestelling"];
+                                tijdstip = (DateTime)reader["tijdstip"];
+                                truitjes = new Dictionary<Truitje, int>();
+                                Bestelling b = new Bestelling(truitjes, bestellingnr, tijdstip, prijs, klant, betaald);
+                                bestellingen.Add(b);
+                                first = true;
+                                bestellingNrOld = bestellingnr;
+                                first = false;
+                            }
+                            //bestelling heeft altijd truitjes
+                            aantal = (int)reader["aantal"];
+                            truitjeid = (int)reader["truitjeid"];
+                            competitie = (string)reader["competitie"];
+                            seizoen = (string)reader["seizoen"];
+                            ploegnaam = (string)reader["ploegnaam"];
+                            prijstruitje = (double)reader["prijstruitje"];
+                            maat = Enum.Parse<KledingMaat>((string)reader["maat"]);
+                            versie = (int)reader["versie"];
+                            uit = (bool)reader["uit"];
+                            Truitje truitje = new Truitje(prijstruitje, truitjeid, seizoen, new Club(competitie, ploegnaam), new ClubSet(uit, versie), maat);
+                            truitjes.Add(truitje, aantal);
                         }
                     }
                     reader.Close();
@@ -280,34 +280,39 @@ namespace VerkoopTruitjesDL.Repositories
             List<int> bestellingNummers = new List<int>();
             foreach (Bestelling b in bestellingen)
             {
-            bestellingNummers.Add(b.BestellingNr);
+                bestellingNummers.Add(b.BestellingNr);
             }
-                
+
             string sql = "DELETE FROM bestellingDetail WHERE bestellingNr=@bestellingNr";
             string sql2 = "DELETE FROM bestelling WHERE bestellingNr=@bestellingNr";
             string sql3 = "DELETE FROM klant WHERE klantNr=@klantNr";
 
             SqlConnection connection = new SqlConnection(connectionString);
+            SqlTransaction transaction = null;
             using (SqlCommand cmd = connection.CreateCommand())
             {
+                connection.Open();
+                transaction = connection.BeginTransaction();
                 try
                 {
-                    connection.Open();
-                    for (int i = 0; i< bestellingNummers.Count; i++)
+                    for (int i = 0; i < bestellingNummers.Count; i++)
                     {
-                    cmd.CommandText = sql;
-                    cmd.Parameters.AddWithValue("@bestellingNr", bestellingNummers[i]);
-                    cmd.ExecuteNonQuery();
-                    cmd.CommandText = sql2;
-                    cmd.ExecuteNonQuery();
+                        cmd.CommandText = sql;
+                        cmd.Transaction = transaction;
+                        cmd.Parameters.AddWithValue("@bestellingNr", bestellingNummers[i]);
+                        cmd.ExecuteNonQuery();
+                        cmd.CommandText = sql2;
+                        cmd.ExecuteNonQuery();
                     }
                     cmd.CommandText = sql3;
                     cmd.Parameters.Clear();
                     cmd.Parameters.AddWithValue("@klantNr", klant.KlantNr);
                     cmd.ExecuteNonQuery();
+                    transaction.Commit();
                 }
                 catch (Exception ex)
                 {
+                    transaction.Rollback();
                     throw new KlantRepositoryException("VerwijderKlant", ex);
                 }
                 finally
@@ -315,19 +320,19 @@ namespace VerkoopTruitjesDL.Repositories
                     connection.Close();
                 }
             }
- 
-            
+
+
         }
 
         public void VoegKlantToe(Klant klant)
         {
             SqlConnection conn = new SqlConnection(connectionString);
-            string sql = "insert into Klant(naam, adres) output INSERTED.klantNr Values(@naam, @adres";
+            string sql = "insert into Klant(naam, adres) output INSERTED.klantNr Values(@naam, @adres)";
             using (SqlCommand cmd = conn.CreateCommand())
             {
                 try
                 {
-                    conn.Open(); 
+                    conn.Open();
                     cmd.CommandText = sql;
                     cmd.Parameters.AddWithValue("@naam", klant.Naam);
                     cmd.Parameters.AddWithValue("@adres", klant.Adres);

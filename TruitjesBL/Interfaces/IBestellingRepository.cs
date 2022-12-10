@@ -16,5 +16,8 @@ namespace VerkoopTruithesBL.Interfaces
         void UpdateBestelling(Bestelling bestelling);
         Bestelling GeefBestelling(int bestellingNr);
         IEnumerable<Bestelling> GeefBestellingen(int? klantId, DateTime? startDatum, DateTime? eindDatum);
+        bool ZoekTruitjeInBestellingen(Truitje truitje);
+
+
     }
 }

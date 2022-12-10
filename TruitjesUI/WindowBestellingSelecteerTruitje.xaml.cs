@@ -28,6 +28,7 @@ namespace TruitjesUI
         private ObservableCollection<string> clubs;
         private ClubManager clubManager;
         private TruitjeManager truitjeManager;
+        private BestellingManager bestellingManager;
         public Truitje Voetbaltruitje;
         private ObservableCollection<Truitje> voetbaltruitjes;
         public WindowBestellingSelecteerTruitje()
@@ -40,6 +41,7 @@ namespace TruitjesUI
             clubManager = new ClubManager(new ClubRepository(ConfigurationManager.ConnectionStrings["VerkoopDBConnection"].ToString(), "2022-2023"));
             competities = new ObservableCollection<string>(clubManager.GeefCompetities());
             truitjeManager = new TruitjeManager(new TruitjeRepository(ConfigurationManager.ConnectionStrings["VerkoopDBConnection"].ToString()));
+            bestellingManager = new BestellingManager(new BestellingRepository(ConfigurationManager.ConnectionStrings["VerkoopDBConnection"].ToString()));
             competities.Insert(0, "<geen competitie>");
             CompetitieComboBox.ItemsSource = competities;
             CompetitieComboBox.SelectedIndex = 0;
@@ -130,6 +132,33 @@ namespace TruitjesUI
             }
             else
                 ClubComboBox.ItemsSource = null;
+        }
+        private void MenuItemDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Truitje tVerwijderen = (Truitje)VoetbaltruitjesSelectie.SelectedItem;
+            if (!bestellingManager.ZoekTruitjeInBestellingen(tVerwijderen)) truitjeManager.VerwijderVoetbaltruitje(tVerwijderen);
+            else MessageBox.Show("Dit truitje wordt nog gebruikt in actieve bestellingen");
+            Zoek_Click(sender, e);
+
+        }
+
+        private void MenuItemUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            WindowUpdateTruitje w = new WindowUpdateTruitje((Truitje)VoetbaltruitjesSelectie.SelectedItem, truitjeManager);
+            if (w.ShowDialog() == true)
+            {
+                Close();
+            }
+
+        }
+        private void MenuItemNew_Click(object sender, RoutedEventArgs e)
+        {
+            WindowUpdateTruitje w = new WindowUpdateTruitje(null, truitjeManager);
+            if (w.ShowDialog() == true)
+            {
+
+            }
+
         }
     }
 }

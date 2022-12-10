@@ -49,13 +49,23 @@ namespace VerkoopTruithesBL.Managers
                 throw new BestellingManagerException("VerwijderBestelling", ex);
             }
         }
+        public bool ZoekTruitjeInBestellingen(Truitje truitje)
+        {
+            try
+            {
+                return _bestellingRepo.ZoekTruitjeInBestellingen(truitje);
+            } catch (Exception ex)
+            {
+                throw new BestellingManagerException("ZoekTruitjeInBestellingen", ex);
+            }
+        }
         public void UpdateBestelling(Bestelling bestelling)
         {
             if (bestelling == null) throw new BestellingManagerException("UpdateBestelling");
             try
             {
                 if (!_bestellingRepo.BestaatBestelling(bestelling))
-                    throw new BestellingManagerException("UpdateBestelling");
+                    VoegBestellingToe(bestelling);
                 if (bestelling.Klant == null)
                     throw new BestellingManagerException("UpdateBestelling");
                 if (bestelling.GetTruitjes().Count == 0)

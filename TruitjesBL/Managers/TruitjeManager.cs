@@ -27,6 +27,7 @@ namespace VerkoopTruithesBL.Managers
                 }
                 else
                 {
+                    if (!repo.BestaatClubSet(truitje.ClubSet)) repo.VoegClubSetToe(truitje.ClubSet);
                     repo.VoegTruitjeToe(truitje);
                 }
             }
@@ -93,6 +94,8 @@ namespace VerkoopTruithesBL.Managers
                     }
                     else
                     {
+                        // ANDER TRUITJE clubset
+                        if (!repo.BestaatClubSet(voetbaltruitje.ClubSet)) repo.VoegClubSetToe(voetbaltruitje.ClubSet);
                         repo.UpdateTruitje(voetbaltruitje);
                     }
                 }

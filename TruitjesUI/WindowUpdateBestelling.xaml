@@ -1,0 +1,68 @@
+﻿<Window x:Class="TruitjesUI.WindowUpdateBestelling"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TruitjesUI"
+        mc:Ignorable="d"
+        Title="WindowUpdateBestelling" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Bestelling aanpassen" Grid.Column="1" Grid.Row="0" TextAlignment="Center" TextDecorations="Underline" FontSize="20"></TextBlock>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="1" Grid.Column="0">BestellingNr:</Label>
+                <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Width="185" Name="tbBestellingNr"/>
+                <Label Grid.Row="2" Grid.Column="0">Klant:</Label>
+                <TextBlock TextAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Width="90" HorizontalAlignment="Left" Name="tbKlant"/>
+                <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Content="Klant veranderen" Name="btnVeranderKlant" IsEnabled="True" Click="btnVeranderKlant_Click" Margin="0,0,0,10" />
+                <Label IsEnabled="False" Grid.Row="3" Grid.Column="0">Tijdstip:</Label>
+                <TextBox IsEnabled="False" Grid.Row="3" Grid.Column="1" Margin="0,0,0,10" Width="185" Name="tbTijdstip"/>
+                <Label Grid.Row="4" Grid.Column="0">Betaald:</Label>
+                <StackPanel Grid.Row="4" Grid.Column="1" Margin="0,0,0,10" Orientation="Horizontal">
+                    <RadioButton GroupName="rbBetaald" Name="rbBetaaldJa">Ja</RadioButton>
+                    <RadioButton GroupName="rbBetaald" Name="rbBetaaldNee" Margin="10, 0, 0, 0">Nee</RadioButton>
+                </StackPanel>
+                <Label Grid.Row="5" Grid.Column="0">Prijs:</Label>
+                <TextBox Grid.Row="5" Grid.Column="1" Margin="0,0,0,10" Width="185" Name="tbPrijs" IsEnabled="false"/>
+                <Label Grid.Row="6" Grid.Column="0">Truitjes</Label>
+                <DataGrid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="1" Name="dgTruitjes"/>
+                <Button Grid.Row="7" Grid.Column="0" Content="Truitje toevoegen" Name="btnSelecteerTruitje" Margin="5,0,15,0" IsEnabled="True" Click="btnSelecteerTruitje_Click"/>
+
+            </Grid>
+        </Grid>
+        <Button Name="btnSaveBestelling" Grid.Row="2" Grid.Column="1" Margin="15" Click="btnSaveBestelling_Click">Opslaan</Button>
+    </Grid>
+</Window>

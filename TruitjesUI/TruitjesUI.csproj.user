@@ -13,6 +13,15 @@
     <Compile Update="WindowBestellingSelecteerTruitje.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WindowUpdateBestelling.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowUpdateKlant.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowUpdateTruitje.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -22,6 +31,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WindowBestellingSelecteerTruitje.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowUpdateBestelling.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowUpdateKlant.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowUpdateTruitje.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

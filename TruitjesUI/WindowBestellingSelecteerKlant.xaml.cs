@@ -29,6 +29,7 @@ namespace TruitjesUI
         {
             InitializeComponent();
             klantManager = new KlantManager(new KlantRepository(ConfigurationManager.ConnectionStrings["VerkoopDBConnection"].ToString()));
+
         }
 
         private void KlantenListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,7 +60,31 @@ namespace TruitjesUI
                 KlantenListBox.ItemsSource = klanten;
             }
         }
+        private void MenuItemDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Klant kVerwijderen = (Klant)KlantenListBox.SelectedItem;
+            klantManager.KlantVerwijderen(kVerwijderen);
+            ZoekKlant_Click(sender, e);
+                
+        }
 
+        private void MenuItemUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            WindowUpdateKlant w = new WindowUpdateKlant((Klant)KlantenListBox.SelectedItem, klantManager);
+            if (w.ShowDialog() == true)
+            {
+                Close();
+            }
 
+        }
+        private void MenuItemNew_Click(object sender, RoutedEventArgs e)
+        {
+            WindowUpdateKlant w = new WindowUpdateKlant(null, klantManager);
+            if (w.ShowDialog() == true)
+            {
+
+            }
+
+        }
     }
 }

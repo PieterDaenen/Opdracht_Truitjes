@@ -26,7 +26,15 @@
         <Label Grid.Row="2" Grid.Column="0" Content="Adres" VerticalAlignment="Center" Margin="5"/>
         <TextBox Grid.Row="2" Grid.Column="1" Name="AdresTextBoxAanpassen" Margin="5"/>
         <Button Grid.Column="3" Grid.RowSpan="3" Content="  Zoek  " Name="ZoekKlant" Margin="5" Click="ZoekKlant_Click"/>
-        <ListBox Grid.Row="3" Grid.ColumnSpan="3" Name="KlantenListBox" Margin="5" SelectionMode="Single" SelectionChanged="KlantenListBox_SelectionChanged"/>
+        <ListBox Grid.Row="3" Grid.ColumnSpan="3" Name="KlantenListBox" Margin="5" SelectionMode="Single" SelectionChanged="KlantenListBox_SelectionChanged">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Delete" Click="MenuItemDelete_Click"></MenuItem>
+                    <MenuItem Header="Update" Click="MenuItemUpdate_Click"></MenuItem>
+                    <MenuItem Header="New" Click="MenuItemNew_Click"></MenuItem>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
         <Button Grid.Row="4" Grid.ColumnSpan="3" Content="  Selecteer Klant  " 
                     Name="SelecteerKlant" Margin="5" 
                     Click="SelecteerKlant_Click" IsEnabled="False"/>

@@ -110,7 +110,7 @@ namespace VerkoopTruithesBL.Model
             if (_truitjes[truitje]==aantal) _truitjes.Remove(truitje);
             else _truitjes[truitje] -= aantal;
         }
-        public IReadOnlyDictionary<Truitje,int> GetTruitjes()
+        public Dictionary<Truitje,int> GetTruitjes()
         {
             return _truitjes;
         }
@@ -144,6 +144,11 @@ namespace VerkoopTruithesBL.Model
         public override int GetHashCode()
         {
             return HashCode.Combine(BestellingNr);
+        }
+
+        public override string? ToString()
+        {
+            return $"Bestelling {BestellingNr}, van {Klant.Naam}, met {_truitjes.Values.Count()} truitjes. Prijs = {BerekenPrijs()}$. Datum = {Tijdstip}";
         }
     }
 }

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\App.xaml
-3-782300765
+6-17461321
 
-8-1903014005
+111229849259
 2121655513363
-MainWindow.xaml;WindowBestellingSelecteerKlant.xaml;WindowBestellingSelecteerTruitje.xaml;
+MainWindow.xaml;WindowBestellingSelecteerKlant.xaml;WindowBestellingSelecteerTruitje.xaml;WindowUpdateBestelling.xaml;WindowUpdateKlant.xaml;WindowUpdateTruitje.xaml;
 
 True
 

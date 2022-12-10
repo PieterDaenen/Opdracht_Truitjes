@@ -29,24 +29,30 @@ namespace TruitjesUI
     {
         private Bestelling bestelling;
         private BestellingManager bestellingManager;
+        private KlantManager klantManager;
         private ObservableCollection<TruitjeData> truitjes = new ObservableCollection<TruitjeData>();
+        private ObservableCollection<Bestelling> bestellingen = new ObservableCollection<Bestelling>();
         public MainWindow()
         {
             InitializeComponent();
             bestellingManager = new BestellingManager(new BestellingRepository(ConfigurationManager.ConnectionStrings["VerkoopDBConnection"].ToString()));
+            klantManager = new KlantManager(new KlantRepository(ConfigurationManager.ConnectionStrings["VerkoopDBConnection"].ToString()));
             bestelling = new Bestelling(DateTime.Now);
             DataGridTextColumn c1 = new DataGridTextColumn();
             c1.Header = "Truitje";
             c1.IsReadOnly = true;
             c1.Binding = new Binding("Truitje");
+            c1.Width = 100;
             BestellingTruitjes.Columns.Add(c1);
             DataGridTextColumn c2 = new DataGridTextColumn();
             c2.Header = "Aantal";
             c2.IsReadOnly = false;
             c2.Binding = new Binding("Aantal");
+            c2.MaxWidth = 250;
             BestellingTruitjes.Columns.Add(c2);
             BestellingTruitjes.AutoGenerateColumns = false;
             BestellingTruitjes.ItemsSource = truitjes;
+
         }
 
         private void SelecteerKlant_Click(object sender, RoutedEventArgs e)
@@ -77,8 +83,6 @@ namespace TruitjesUI
 
         private void PlaatsBestelling_Click(object sender, RoutedEventArgs e)
         {
-          
-
             try
             {
             if (BetaaldCheckBox.IsChecked == true)
@@ -96,28 +100,8 @@ namespace TruitjesUI
             {
                 MessageBox.Show("Vul alle data in");
             }
-
         }
 
-        private void SelecteerKlantAanpassen_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ZoekBestellingAanpassen_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MenuItemDelete_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MenuItemUpdate_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void TruitjeData_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             TruitjeData t = (TruitjeData)sender;
@@ -133,6 +117,83 @@ namespace TruitjesUI
             }
             PrijsTextBox.Text = bestelling.BerekenPrijs().ToString();
             //CheckBestelling();
+        }
+
+        private void ZoekBestellingAanpassen_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int? bestellingId = null;
+                if (!string.IsNullOrWhiteSpace(BestellingIdAanpassenTextBox.Text) && int.TryParse(BestellingIdAanpassenTextBox.Text, out int i))
+                {
+                    bestellingId = i;
+                }
+
+                int? klantId = null;
+                if (!string.IsNullOrWhiteSpace(KlantAanpassenTextBox.Text))
+                {
+                    string[] gesplitst = KlantAanpassenTextBox.Text.Split(',');
+                    string k = gesplitst[0];
+                    klantId = int.Parse(k);
+                }
+
+                DateTime? startDatum = null;
+                if (StartdatumDatePicker.SelectedDate.HasValue)
+                {
+                    startDatum = StartdatumDatePicker.SelectedDate.Value;
+                }
+
+                DateTime? eindDatum = null;
+                if (EinddatumDatePicker.SelectedDate.HasValue)
+                {
+                    eindDatum = EinddatumDatePicker.SelectedDate.Value;
+                }
+                
+                BestellingenAanpassen.ItemsSource =  bestellingManager.ZoekBestellingen(bestellingId, klantId, startDatum, eindDatum);
+
+                foreach (Bestelling b in bestellingen)
+                {
+                    BestellingenAanpassen.Items.Add(b);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Vul alle data in");
+            }
+        }
+
+        private void SelecteerKlantAanpassen_Click(object sender, RoutedEventArgs e)
+        {
+            WindowBestellingSelecteerKlant w = new WindowBestellingSelecteerKlant();
+            if (w.ShowDialog() == true)
+            {
+                KlantAanpassenTextBox.Text = w.Klant.ToString();
+            }
+        }
+
+        private void MenuItemDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Bestelling bVerwijderen = (Bestelling)BestellingenAanpassen.SelectedItem;
+            bestellingManager.VerwijderBestelling(bVerwijderen);
+            BestellingenAanpassen.ItemsSource = bestellingen;
+        }
+
+        private void MenuItemUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            WindowUpdateBestelling w = new WindowUpdateBestelling((Bestelling)BestellingenAanpassen.SelectedItem, bestellingManager, klantManager);
+            if (w.ShowDialog() == true)
+            {
+
+            }
+        }
+        private void MenuItemNew_Click(object sender, RoutedEventArgs e)
+        {
+            WindowUpdateBestelling w = new WindowUpdateBestelling(null, bestellingManager, klantManager);
+            if (w.ShowDialog() == true)
+            {
+
+            }
+
         }
     }
 }

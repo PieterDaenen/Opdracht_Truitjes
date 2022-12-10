@@ -1,10 +1,3 @@
-C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\TruitjesUI.csproj.AssemblyReference.cache
-C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\MainWindow.g.cs
-C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowBestellingSelecteerKlant.g.cs
-C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowBestellingSelecteerTruitje.g.cs
-C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\App.g.cs
-C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\TruitjesUI_MarkupCompile.cache
-C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\TruitjesUI_MarkupCompile.lref
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\bin\Debug\net6.0-windows\TruitjesUI.exe
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\bin\Debug\net6.0-windows\TruitjesUI.dll.config
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\bin\Debug\net6.0-windows\TruitjesUI.deps.json
@@ -44,6 +37,13 @@ C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\bin\Debug\net6.0-windows\Truitj
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\bin\Debug\net6.0-windows\TruitjesDL.dll
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\bin\Debug\net6.0-windows\TruitjesBL.pdb
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\bin\Debug\net6.0-windows\TruitjesDL.pdb
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\TruitjesUI.csproj.AssemblyReference.cache
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowBestellingSelecteerKlant.g.cs
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowBestellingSelecteerTruitje.g.cs
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\TruitjesUI_MarkupCompile.cache
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\TruitjesUI_MarkupCompile.lref
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\MainWindow.baml
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowBestellingSelecteerKlant.baml
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowBestellingSelecteerTruitje.baml
@@ -58,3 +58,9 @@ C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\refint
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\TruitjesUI.pdb
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\TruitjesUI.genruntimeconfig.cache
 C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\ref\TruitjesUI.dll
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowUpdateBestelling.g.cs
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowUpdateKlant.g.cs
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowUpdateTruitje.g.cs
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowUpdateBestelling.baml
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowUpdateKlant.baml
+C:\Users\Pieter\source\repos\Truitjes\TruitjesUI\obj\Debug\net6.0-windows\WindowUpdateTruitje.baml

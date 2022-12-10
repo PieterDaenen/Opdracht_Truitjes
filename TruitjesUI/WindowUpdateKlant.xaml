@@ -1,0 +1,56 @@
+﻿<Window x:Class="TruitjesUI.WindowUpdateKlant"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TruitjesUI"
+        mc:Ignorable="d"
+        Title="WindowUpdateKlant" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Klant aanpassen" Grid.Column="1" Grid.Row="0" TextAlignment="Center" TextDecorations="Underline" FontSize="20"></TextBlock>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <!--rows & headers toevgoegen afhankelijk van hoeveel velden
+                bij rechtsklik update -> open dit scherm & vul details in
+                dan check of die al bestaat
+                    if ja -> update
+                    if nee -> createNew-->
+                <Label Grid.Row="1" Grid.Column="0">KlantNr:</Label>
+                <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,5,0,10" Width="185" Name="tbKlantNr"/>
+                <Label Grid.Row="2" Grid.Column="0">Naam:</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="0,5,0,10" Width="185" Name="tbNaam"/>
+                <Label Grid.Row="3" Grid.Column="0">Adres:</Label>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="0,5,0,10" Width="185" Name="tbAdres"/>
+            </Grid>
+        </Grid>
+        <Button Grid.Row="2" Grid.Column="1" Margin="15" Click="btnSave_Click">Opslaan</Button>
+    </Grid>
+</Window>

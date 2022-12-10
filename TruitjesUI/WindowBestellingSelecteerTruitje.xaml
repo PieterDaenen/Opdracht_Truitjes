@@ -52,7 +52,15 @@
         </Grid>
         <Button Grid.Row="2" Grid.Column="4" Grid.RowSpan="2" Content="Zoek" Name="ZoekButton" Margin="5" Click="Zoek_Click"/>
 
-        <ListBox Grid.Row="4" Grid.ColumnSpan="4" Name="VoetbaltruitjesSelectie" Margin="5" SelectionMode="Single" SelectionChanged="Voetbaltruitjes_SelectionChanged"/>
+        <ListBox Grid.Row="4" Grid.ColumnSpan="4" Name="VoetbaltruitjesSelectie" Margin="5" SelectionMode="Single" SelectionChanged="Voetbaltruitjes_SelectionChanged">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Delete" Click="MenuItemDelete_Click"></MenuItem>
+                    <MenuItem Header="Update" Click="MenuItemUpdate_Click"></MenuItem>
+                    <MenuItem Header="New" Click="MenuItemNew_Click"></MenuItem>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
         <Button Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="6" Content=" Selecteer Truitje " Name="SelecteerTruitjeButton" Margin="5" Click="SelecteerTruitje_Click" IsEnabled="False"/>
     </Grid>
 </Window>
